@@ -12,7 +12,7 @@ packages:
           main: ""
           runtime: nodejs:default
           web: true
-          webSecure: false
+          webSecure: "${SERVERLESS_TOKEN} || ''"
           parameters: {}
           environment: {}
           annotations: {}
