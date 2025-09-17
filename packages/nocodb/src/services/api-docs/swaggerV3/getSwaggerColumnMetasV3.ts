@@ -7,6 +7,7 @@ import type { DriverClient } from '~/utils/nc-config';
 import SwaggerTypes from '~/db/sql-mgr/code/routers/xc-ts/SwaggerTypes';
 import Noco from '~/Noco';
 
+// TODO: refactor and avoid duplication
 // Helper function to process a single column and return its swagger field definition
 async function processColumnToSwaggerField(
   context: NcContext,
@@ -31,9 +32,19 @@ async function processColumnToSwaggerField(
           ncMeta,
         );
         if (colOpt) {
-          const relTable = await colOpt.getRelatedTable(context, ncMeta);
-          field.type = undefined;
-          field.$ref = `#/components/schemas/${relTable.title}Request`;
+          // LTAR fields in insert/update accept array of objects with id property
+          field.type = 'array';
+          field.items = {
+            type: 'object',
+            properties: {
+              id: {
+                oneOf: [{ type: 'string' }, { type: 'number' }],
+                description: 'Record identifier for linking',
+              },
+            },
+            required: ['id'],
+          };
+          field.virtual = false;
         }
       }
       break;
@@ -190,7 +201,7 @@ export default async (
 ): Promise<SwaggerColumn[]> => {
   // Extract dbtype based on column source
   const dbType = await base.getSources().then((sources) => {
-    const sourceId = columns[0].source_id;
+    const sourceId = columns[0]?.source_id;
     return sources.find((s) => s.id === sourceId)?.type || sources[0]?.type;
   });
 
