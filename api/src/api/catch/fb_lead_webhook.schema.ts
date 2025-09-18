@@ -7,7 +7,7 @@ export const fbLeadWebhookSchema = {
         leadgenId: Type.String(),
         formId: Type.String(),
         formName: Type.String(),
-        dateCreated: Type.Date(),
+        dateCreated: Type.String({ format: 'date-time' }),
         adId: Type.String(),
         pageId: Type.String(),
         adGroupId: Type.String(),

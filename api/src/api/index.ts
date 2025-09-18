@@ -1,9 +1,11 @@
 import { FastifyInstance } from 'fastify';
-import perfitAPI from "@/api/perfit_routes";
 
 export default async (fastify: FastifyInstance) => {
 
-    // leadsAPI routes
-    await fastify.register(perfitAPI, { prefix: `/perfit` });
+    // catch routes
+    await fastify.register(import("@/api/catch_routes"), { prefix: `/catch` });
+
+    // perfitAPI routes
+    await fastify.register(import("@/api/perfit_routes"), { prefix: `/perfit` });
 
 }
