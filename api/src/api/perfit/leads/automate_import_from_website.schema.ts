@@ -6,7 +6,7 @@ export const automateImportFromWebsiteSchema = {
     tags: ["Leads"],
     body: Type.Object({
         brand: TypeboxBrands,
-        registrationDate: Type.Optional(Type.Date()),
+        registrationDate: Type.Optional(Type.String({ format: 'date-time' })),
         nameTitle: Type.String(),
         fullName: Type.String(),
         mobile: Type.String(),
