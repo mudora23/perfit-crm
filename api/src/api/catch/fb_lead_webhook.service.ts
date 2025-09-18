@@ -21,7 +21,7 @@ export async function catchFbLeadWebhook(
             ad_id: adId,
             ad_group_id: adGroupId,
             platform: platform,
-            is_organic: isOrganic,
+            is_organic: isOrganic === "true",
             webhook_data: JSON.stringify(data),
             row_created_at: new Date(),
         })

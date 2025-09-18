@@ -12,7 +12,7 @@ export const fbLeadWebhookSchema = {
         pageId: Type.String(),
         adGroupId: Type.String(),
         platform: Type.String(),
-        isOrganic: Type.Boolean(),
+        isOrganic: Type.String(),
         data: Type.Any(), // Use Type.Any() for flexible JSON object
     }),
     response: {
