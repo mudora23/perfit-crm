@@ -1,6 +1,6 @@
 import { Type } from '@sinclair/typebox'
 
-export const fbLeadWebhookSchema = {
+export const catchWebhookSchema = {
     description: "",
     tags: ["Leads"],
     body: Type.Object({

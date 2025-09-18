@@ -75,6 +75,17 @@ export interface IntegrationsFbLeadsWebhook {
   webhook_data: string | null;
 }
 
+export interface IntegrationsWebsiteWebhook {
+  brand: string | null;
+  id: Generated<Int8>;
+  row_created_at: Timestamp | null;
+  row_proceed_finish: Timestamp | null;
+  row_proceed_start: Timestamp | null;
+  row_proceed_to_brand: string | null;
+  row_proceed_to_lead_id: number | null;
+  webhook_data: string | null;
+}
+
 export interface NcApiTokens {
   base_id: string | null;
   created_at: Timestamp | null;
@@ -1235,6 +1246,7 @@ export interface DB {
   "integrations.fb_leads_ad_information": IntegrationsFbLeadsAdInformation;
   "integrations.fb_leads_form_information": IntegrationsFbLeadsFormInformation;
   "integrations.fb_leads_webhook": IntegrationsFbLeadsWebhook;
+  "integrations.website_webhook": IntegrationsWebsiteWebhook;
   nc_api_tokens: NcApiTokens;
   nc_audit_v2: NcAuditV2;
   nc_audit_v2_old: NcAuditV2Old;

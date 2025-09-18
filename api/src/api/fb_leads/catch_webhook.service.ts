@@ -1,13 +1,13 @@
 import { FastifyRequest, FastifyReply } from "fastify";
 import { Static } from '@sinclair/typebox';
-import { TypedFastifyInstance, JsonObject } from "@/types/types";
-import { fbLeadWebhookSchema } from "@/api/catch/fb_lead_webhook.schema";
+import { TypedFastifyInstance } from "@/types/types";
+import { catchWebhookSchema } from "@/api/fb_leads/catch_webhook.schema";
 
-export async function catchFbLeadWebhook(
+export async function catchWebhook(
     fastify: TypedFastifyInstance,
     request: FastifyRequest,
     reply: FastifyReply,
-    body: Static<typeof fbLeadWebhookSchema.body>
+    body: Static<typeof catchWebhookSchema.body>
 ) {
 
     const { leadgenId, formId, formName, dateCreated, adId, pageId, adGroupId, platform, isOrganic, data } = body;
