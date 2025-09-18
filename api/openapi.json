@@ -1,0 +1,12 @@
+{
+  "info": {
+    "title": "Tspec API",
+    "version": "0.0.1",
+    "description": ""
+  },
+  "openapi": "3.0.3",
+  "paths": {},
+  "components": {
+    "schemas": {}
+  }
+}

@@ -1,0 +1,23 @@
+import { Type } from '@sinclair/typebox'
+
+export const fbLeadWebhookSchema = {
+    description: "",
+    tags: ["Leads"],
+    body: Type.Object({
+        leadgenId: Type.String(),
+        formId: Type.String(),
+        formName: Type.String(),
+        dateCreated: Type.Date(),
+        adId: Type.String(),
+        pageId: Type.String(),
+        adGroupId: Type.String(),
+        platform: Type.String(),
+        isOrganic: Type.Boolean(),
+        data: Type.Any(), // Use Type.Any() for flexible JSON object
+    }),
+    response: {
+        200: Type.Object({
+            status: Type.String(),
+        }),
+    }
+};
