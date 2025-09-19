@@ -24,7 +24,6 @@ export const setAdInformationSchema = {
             name: Type.String(),
         }),
         preview_shareable_link: Type.String(),
-        full_details: Type.Any(),
 
         created_time: Type.String({ format: 'date-time' }),
         updated_time: Type.String({ format: 'date-time' }),
