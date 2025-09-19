@@ -47,6 +47,15 @@ export interface IntegrationsFbLeadsAdInformation {
   updated_time: Timestamp | null;
 }
 
+export interface IntegrationsFbLeadsAdInsights {
+  ad_account_id: string;
+  ad_id: string;
+  date: Timestamp;
+  full_details: string;
+  row_created_at: Timestamp;
+  row_updated_at: Timestamp;
+}
+
 export interface IntegrationsFbLeadsFormInformation {
   created_time: Timestamp | null;
   form_id: string;
@@ -64,7 +73,7 @@ export interface IntegrationsFbLeadsWebhook {
   form_id: string;
   id: Generated<Int8>;
   is_organic: boolean | null;
-  lead_id: string | null;
+  lead_id: string;
   page_id: string;
   platform: string | null;
   row_created_at: Timestamp | null;
@@ -75,15 +84,58 @@ export interface IntegrationsFbLeadsWebhook {
   webhook_data: string | null;
 }
 
+export interface IntegrationsGoogleAdsAccountConfig {
+  ad_account_id: string;
+  comment: string | null;
+  is_enabled: boolean;
+}
+
+export interface IntegrationsGoogleAdsAdGroupInformation {
+  ad_account_id: string;
+  ad_group_id: string;
+  ad_group_resource_name: string;
+  base_ad_group: string;
+  campaign_id: string;
+  campaign_resource_name: string;
+  full_details: string;
+  row_created_at: Timestamp;
+  row_updated_at: Timestamp;
+  status: string | null;
+  type: string | null;
+}
+
+export interface IntegrationsGoogleAdsAdGroupReport {
+  ad_account_id: string;
+  ad_group_id: string;
+  campaign_id: string;
+  date: Timestamp;
+  full_details: string;
+  row_created_at: Timestamp;
+  row_updated_at: Timestamp;
+}
+
+export interface IntegrationsGoogleAdsCampaignInformation {
+  ad_account_id: string;
+  base_campaign: string;
+  campaign_id: string;
+  campaign_name: string;
+  campaign_resource_name: string;
+  full_details: string;
+  row_created_at: Timestamp;
+  row_updated_at: Timestamp;
+  serving_status: string;
+  status: string;
+}
+
 export interface IntegrationsWebsiteWebhook {
-  brand: string | null;
+  brand: string;
   id: Generated<Int8>;
-  row_created_at: Timestamp | null;
+  row_created_at: Timestamp;
   row_proceed_finish: Timestamp | null;
   row_proceed_start: Timestamp | null;
   row_proceed_to_brand: string | null;
   row_proceed_to_lead_id: number | null;
-  webhook_data: string | null;
+  webhook_data: string;
 }
 
 export interface NcApiTokens {
@@ -1244,8 +1296,13 @@ export interface DB {
   "integrations.brand_information": IntegrationsBrandInformation;
   "integrations.fb_leads_ad_account_config": IntegrationsFbLeadsAdAccountConfig;
   "integrations.fb_leads_ad_information": IntegrationsFbLeadsAdInformation;
+  "integrations.fb_leads_ad_insights": IntegrationsFbLeadsAdInsights;
   "integrations.fb_leads_form_information": IntegrationsFbLeadsFormInformation;
   "integrations.fb_leads_webhook": IntegrationsFbLeadsWebhook;
+  "integrations.google_ads_account_config": IntegrationsGoogleAdsAccountConfig;
+  "integrations.google_ads_ad_group_information": IntegrationsGoogleAdsAdGroupInformation;
+  "integrations.google_ads_ad_group_report": IntegrationsGoogleAdsAdGroupReport;
+  "integrations.google_ads_campaign_information": IntegrationsGoogleAdsCampaignInformation;
   "integrations.website_webhook": IntegrationsWebsiteWebhook;
   nc_api_tokens: NcApiTokens;
   nc_audit_v2: NcAuditV2;

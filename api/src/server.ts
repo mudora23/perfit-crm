@@ -92,6 +92,7 @@ export default async () => {
       tags: [
         { name: "Healthcheck", description: "Healthcheck end-point" },
         { name: "FB Leads", description: "FB Leads end-points" },
+        { name: "Google Ads", description: "Google Ads end-points" },
         { name: "Website", description: "Website end-points" },
         { name: "perFIT", description: "perFIT specific end-points" },
 
