@@ -27,7 +27,7 @@ export default fp(async (fastify: FastifyInstance) => {
           },
         }),
       }),
-      plugins: [new CamelCasePlugin()],
+      //plugins: [new CamelCasePlugin()],
     });
     fastify.decorate('mainDB', mainDB);
     fastify.addHook('onClose', async (fastify) => {

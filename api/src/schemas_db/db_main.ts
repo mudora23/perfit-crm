@@ -127,6 +127,19 @@ export interface IntegrationsGoogleAdsCampaignInformation {
   status: string;
 }
 
+export interface IntegrationsWebsiteStatistics {
+  action: string;
+  action_object: string | null;
+  brand: string;
+  id: Generated<Int8>;
+  row_created_at: Timestamp;
+  timestamp: Timestamp;
+  uid: string | null;
+  uip: string | null;
+  uri: string;
+  user_agent: string | null;
+}
+
 export interface IntegrationsWebsiteWebhook {
   brand: string;
   id: Generated<Int8>;
@@ -1303,6 +1316,7 @@ export interface DB {
   "integrations.google_ads_ad_group_information": IntegrationsGoogleAdsAdGroupInformation;
   "integrations.google_ads_ad_group_report": IntegrationsGoogleAdsAdGroupReport;
   "integrations.google_ads_campaign_information": IntegrationsGoogleAdsCampaignInformation;
+  "integrations.website_statistics": IntegrationsWebsiteStatistics;
   "integrations.website_webhook": IntegrationsWebsiteWebhook;
   nc_api_tokens: NcApiTokens;
   nc_audit_v2: NcAuditV2;
