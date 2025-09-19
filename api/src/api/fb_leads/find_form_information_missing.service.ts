@@ -16,23 +16,11 @@ export async function findFormInformationMissing(
         .execute()
         .then(rows => rows.map(row => row.form_id));
 
-    const requiredForms = await fastify.mainDB
+    return await fastify.mainDB
         .selectFrom("integrations.fb_leads_webhook")
         .select(["form_id", "page_id"])
-        .execute();
+        .distinct()
+        .execute()
+        .then(rows => rows.filter(row => !existingFormIds.includes(row.form_id)));
 
-    // remove duplicates
-    const uniqueRequiredForms = Array.from(new Map(requiredForms.map(item => [item.form_id, item])).values());
-
-    // remove if form_id is null or page_id is null
-    const res = [];
-    for (const form of uniqueRequiredForms) {
-        if (form.form_id && form.page_id && !existingFormIds.includes(form.form_id)) {
-            res.push({
-                form_id: form.form_id,
-                page_id: form.page_id,
-            });
-        }
-    }
-    return res;
 }

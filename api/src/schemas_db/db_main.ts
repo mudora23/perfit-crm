@@ -20,9 +20,9 @@ export interface IntegrationsBrandInformation {
 
 export interface IntegrationsFbLeadsAdAccountConfig {
   ad_account_id: string;
-  business_manager_id: string | null;
+  business_manager_id: string;
   comment: string | null;
-  is_enabled: boolean | null;
+  is_enabled: boolean;
 }
 
 export interface IntegrationsFbLeadsAdInformation {
@@ -52,7 +52,7 @@ export interface IntegrationsFbLeadsFormInformation {
   form_id: string;
   form_name: string | null;
   full_details: string | null;
-  page_id: string | null;
+  page_id: string;
   row_created_at: Timestamp | null;
   row_updated_at: Timestamp | null;
 }
@@ -61,11 +61,11 @@ export interface IntegrationsFbLeadsWebhook {
   ad_group_id: string | null;
   ad_id: string | null;
   created_at: Timestamp | null;
-  form_id: string | null;
+  form_id: string;
   id: Generated<Int8>;
   is_organic: boolean | null;
   lead_id: string | null;
-  page_id: string | null;
+  page_id: string;
   platform: string | null;
   row_created_at: Timestamp | null;
   row_proceed_finish: Timestamp | null;
