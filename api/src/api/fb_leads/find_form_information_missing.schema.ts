@@ -3,7 +3,7 @@ import { Type } from '@sinclair/typebox'
 export const findFormInformationMissingSchema = {
     description: "",
     tags: ["FB Leads"],
-    body: Type.Object({}),
+    body: Type.Any(),
     response: {
         200: Type.Array(Type.Object({
             form_id: Type.String(),
