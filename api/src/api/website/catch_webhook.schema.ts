@@ -3,7 +3,7 @@ import { TypeboxBrands } from "@/types/types";
 
 export const catchWebhookSchema = {
     description: "",
-    tags: ["Leads"],
+    tags: ["Website"],
     body: Type.Object({
         brand: TypeboxBrands,
     }),

@@ -91,7 +91,10 @@ export default async () => {
       ],
       tags: [
         { name: "Healthcheck", description: "Healthcheck end-point" },
-        { name: "Leads", description: "Leads end-points" },
+        { name: "FB Leads", description: "FB Leads end-points" },
+        { name: "Website", description: "Website end-points" },
+        { name: "perFIT", description: "perFIT specific end-points" },
+
       ],
       components: {
         securitySchemes: {

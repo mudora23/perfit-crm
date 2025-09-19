@@ -2,7 +2,7 @@ import { Type } from '@sinclair/typebox'
 
 export const catchWebhookSchema = {
     description: "",
-    tags: ["Leads"],
+    tags: ["FB Leads"],
     body: Type.Object({
         leadgenId: Type.String(),
         formId: Type.String(),

@@ -2,7 +2,7 @@ import { Type } from '@sinclair/typebox'
 
 export const setAdInformationSchema = {
     description: "",
-    tags: ["Cron"],
+    tags: ["FB Leads"],
     body: Type.Array(Type.Object({
         id: Type.String(),
         name: Type.String(),

@@ -2,7 +2,7 @@ import { Type } from '@sinclair/typebox'
 
 export const processWebsiteWebhookSchema = {
     description: "",
-    tags: ["Leads"],
+    tags: ["perFIT"],
     body: Type.Object({
 
     }),
