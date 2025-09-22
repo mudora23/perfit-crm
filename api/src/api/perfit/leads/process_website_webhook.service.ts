@@ -11,11 +11,13 @@ export async function processWebsiteWebhook(
   body: Static<typeof processWebsiteWebhookSchema.body>
 ) {
 
+    const brand = "perFIT";
+
     // Check if there's webhook to process
     const webhook = await fastify.mainDB
         .selectFrom("integrations.website_webhook")
         .selectAll()
-        .where("brand", "=", "perFIT")
+        .where("brand", "=", brand)
         .where("row_proceed_start", "is", null)
         .orderBy("id", "asc")
         .limit(1)
@@ -62,7 +64,7 @@ export async function processWebsiteWebhook(
         user_agent
      */
     const lead = await fastify.mainDB
-        .insertInto(getTable("perFIT", "leads"))
+        .insertInto(getTable(brand, "leads"))
         .values({
             "姓名": data.full_name,
             "平台": "Website",
@@ -106,7 +108,7 @@ export async function processWebsiteWebhook(
         .updateTable("integrations.website_webhook")
         .set({
             row_proceed_finish: new Date(),
-            row_proceed_to_brand: "perFIT",
+            row_proceed_to_brand: brand,
             row_proceed_to_lead_id: lead.id,
         })
         .where("id", "=", webhook.id)

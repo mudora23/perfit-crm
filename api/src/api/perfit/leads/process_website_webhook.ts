@@ -13,10 +13,10 @@ async function routes (fastify: TypedFastifyInstance, options: any) {
         try {
 
           // Process the request
-          await processWebsiteWebhook(fastify, request, reply, request.body);
+          const res = await processWebsiteWebhook(fastify, request, reply, request.body);
 
           // Send the response
-          return reply.code(200).send();
+          return reply.code(200).send(res);
 
         } catch (error) {
           return handleError(request, reply, error);

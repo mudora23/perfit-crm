@@ -11,7 +11,7 @@ export type Numeric = ColumnType<string, number | string, number | string>;
 export type Timestamp = ColumnType<Date, Date | string, Date | string>;
 
 export interface IntegrationsBrandInformation {
-  brand_name: string | null;
+  brand: string | null;
   fb_page_ids: string | null;
   google_ads_account_ids: string | null;
   id: Generated<number>;
@@ -42,6 +42,9 @@ export interface IntegrationsFbLeadsAdInformation {
   page_ids: string | null;
   preview_shareable_link: string | null;
   row_created_at: Timestamp | null;
+  row_proceed_finish: Timestamp | null;
+  row_proceed_start: Timestamp | null;
+  row_proceed_to_brand: string | null;
   row_updated_at: Timestamp | null;
   status: string | null;
   updated_time: Timestamp | null;
@@ -53,6 +56,9 @@ export interface IntegrationsFbLeadsAdInsights {
   date: Timestamp;
   full_details: string;
   row_created_at: Timestamp;
+  row_proceed_finish: Timestamp | null;
+  row_proceed_start: Timestamp | null;
+  row_proceed_to_brand: string | null;
   row_updated_at: Timestamp;
 }
 
@@ -1208,6 +1214,7 @@ export interface Notification {
 }
 
 export interface P9gyt5ysvuuldscFBAds {
+  Ad_ID: string | null;
   Ad_Name: string | null;
   Adset_Name: string | null;
   Campaign_Name: string | null;
@@ -1215,14 +1222,34 @@ export interface P9gyt5ysvuuldscFBAds {
   created_by: string | null;
   Creative_Name: string | null;
   Display_Name: string | null;
-  Full_Details: string | null;
   id: Generated<number>;
   nc_order: Numeric | null;
+  Preview_Link: string | null;
   updated_at: Timestamp | null;
   updated_by: string | null;
 }
 
 export interface P9gyt5ysvuuldscFBAdsInsights {
+  created_at: Timestamp | null;
+  created_by: string | null;
+  id: Generated<number>;
+  nc_order: Numeric | null;
+  title: string | null;
+  updated_at: Timestamp | null;
+  updated_by: string | null;
+}
+
+export interface P9gyt5ysvuuldscGoogleAds {
+  created_at: Timestamp | null;
+  created_by: string | null;
+  id: Generated<number>;
+  nc_order: Numeric | null;
+  title: string | null;
+  updated_at: Timestamp | null;
+  updated_by: string | null;
+}
+
+export interface P9gyt5ysvuuldscGoogleAdsReports {
   created_at: Timestamp | null;
   created_by: string | null;
   id: Generated<number>;
@@ -1386,6 +1413,8 @@ export interface DB {
   notification: Notification;
   "p9gyt5ysvuuldsc.FB Ads": P9gyt5ysvuuldscFBAds;
   "p9gyt5ysvuuldsc.FB Ads Insights": P9gyt5ysvuuldscFBAdsInsights;
+  "p9gyt5ysvuuldsc.Google Ads": P9gyt5ysvuuldscGoogleAds;
+  "p9gyt5ysvuuldsc.Google Ads Reports": P9gyt5ysvuuldscGoogleAdsReports;
   "p9gyt5ysvuuldsc.leads": P9gyt5ysvuuldscLeads;
   "pj144lwve97fm7o.Features": Pj144lwve97fm7oFeatures;
   xc_knex_migrations: XcKnexMigrations;
