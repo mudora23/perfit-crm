@@ -21,7 +21,7 @@ export const setAdGroupInformationSchema = {
         */
         campaign: Type.Any(),
         status: Type.Optional(Type.String()),
-        type: Type.Optional(Type.String()),
+        type: Type.Optional(Type.Any()), // "SEARCH_STANDARD", null etc
     })),
     response: {
         200: Type.Object({
