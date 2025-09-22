@@ -20,8 +20,8 @@ export const setAdGroupInformationSchema = {
             }
         */
         campaign: Type.Any(),
-        status: Type.String(),
-        type: Type.String(),
+        status: Type.Optional(Type.String()),
+        type: Type.Optional(Type.String()),
     })),
     response: {
         200: Type.Object({
