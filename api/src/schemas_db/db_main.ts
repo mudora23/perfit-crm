@@ -105,6 +105,9 @@ export interface IntegrationsGoogleAdsAdGroupInformation {
   campaign_resource_name: string;
   full_details: string;
   row_created_at: Timestamp;
+  row_proceed_finish: Timestamp | null;
+  row_proceed_start: Timestamp | null;
+  row_proceed_to_brand: string | null;
   row_updated_at: Timestamp;
   status: string | null;
   type: string | null;
@@ -117,6 +120,9 @@ export interface IntegrationsGoogleAdsAdGroupReport {
   date: Timestamp;
   full_details: string;
   row_created_at: Timestamp;
+  row_proceed_finish: Timestamp | null;
+  row_proceed_start: Timestamp | null;
+  row_proceed_to_brand: string | null;
   row_updated_at: Timestamp;
 }
 
@@ -1213,6 +1219,34 @@ export interface Notification {
   updated_at: Generated<Timestamp>;
 }
 
+export interface P9gyt5ysvuuldscAdsReports {
+  Clicks: Int8 | null;
+  Conversions: Numeric | null;
+  Cost: Numeric | null;
+  CPC__Cost_Per_Click_: Numeric | null;
+  CPM__Cost_per_1000_Impressions_: Numeric | null;
+  created_at: Timestamp | null;
+  created_by: string | null;
+  CTR_for_all_clicks__Clickthrough_Rate_: Numeric | null;
+  CTR_for_link_clicks__Clickthrough_Rate_: Numeric | null;
+  Date: Timestamp | null;
+  Display_Name: string | null;
+  Engagements: Int8 | null;
+  "FB Ads_id": number | null;
+  "Google Ads_id": number | null;
+  id: Generated<number>;
+  Impressions: Int8 | null;
+  nc_order: Numeric | null;
+  Platform: string | null;
+  updated_at: Timestamp | null;
+  updated_by: string | null;
+  Video_Views: Int8 | null;
+  Video_Views__25__: Int8 | null;
+  Video_Views__50__: Int8 | null;
+  Video_Views__75__: Int8 | null;
+  Video_Views__95__: Int8 | null;
+}
+
 export interface P9gyt5ysvuuldscFBAds {
   Ad_ID: string | null;
   Ad_Name: string | null;
@@ -1220,6 +1254,7 @@ export interface P9gyt5ysvuuldscFBAds {
   Campaign_Name: string | null;
   created_at: Timestamp | null;
   created_by: string | null;
+  Created_Time: Timestamp | null;
   Creative_Name: string | null;
   Display_Name: string | null;
   id: Generated<number>;
@@ -1229,32 +1264,17 @@ export interface P9gyt5ysvuuldscFBAds {
   updated_by: string | null;
 }
 
-export interface P9gyt5ysvuuldscFBAdsInsights {
-  created_at: Timestamp | null;
-  created_by: string | null;
-  id: Generated<number>;
-  nc_order: Numeric | null;
-  title: string | null;
-  updated_at: Timestamp | null;
-  updated_by: string | null;
-}
-
 export interface P9gyt5ysvuuldscGoogleAds {
+  Ad_Group_ID: string | null;
+  Ad_Group_Name: string | null;
+  Campaign_Name: string | null;
   created_at: Timestamp | null;
   created_by: string | null;
+  Display_Name: string | null;
   id: Generated<number>;
   nc_order: Numeric | null;
-  title: string | null;
-  updated_at: Timestamp | null;
-  updated_by: string | null;
-}
-
-export interface P9gyt5ysvuuldscGoogleAdsReports {
-  created_at: Timestamp | null;
-  created_by: string | null;
-  id: Generated<number>;
-  nc_order: Numeric | null;
-  title: string | null;
+  Start_Date: Timestamp | null;
+  Type: string | null;
   updated_at: Timestamp | null;
   updated_by: string | null;
 }
@@ -1273,6 +1293,7 @@ export interface P9gyt5ysvuuldscLeads {
   Facebook_Click_Identifier__fbclid_: string | null;
   "FB Ads_id": number | null;
   Full_Record__full_record_: string | null;
+  "Google Ads_id": number | null;
   Google_Click_Identifier__gclid_: string | null;
   id: Generated<number>;
   "Keyman__人名_": string | null;
@@ -1411,10 +1432,9 @@ export interface DB {
   nc_views_v2: NcViewsV2;
   nc_widgets_v2: NcWidgetsV2;
   notification: Notification;
+  "p9gyt5ysvuuldsc.Ads Reports": P9gyt5ysvuuldscAdsReports;
   "p9gyt5ysvuuldsc.FB Ads": P9gyt5ysvuuldscFBAds;
-  "p9gyt5ysvuuldsc.FB Ads Insights": P9gyt5ysvuuldscFBAdsInsights;
   "p9gyt5ysvuuldsc.Google Ads": P9gyt5ysvuuldscGoogleAds;
-  "p9gyt5ysvuuldsc.Google Ads Reports": P9gyt5ysvuuldscGoogleAdsReports;
   "p9gyt5ysvuuldsc.leads": P9gyt5ysvuuldscLeads;
   "pj144lwve97fm7o.Features": Pj144lwve97fm7oFeatures;
   xc_knex_migrations: XcKnexMigrations;

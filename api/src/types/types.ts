@@ -12,12 +12,6 @@ import {
 import { RouteGenericInterface } from 'fastify/types/route';
 import { FastifySchema } from 'fastify/types/schema';
 import { TypeBoxTypeProvider } from '@fastify/type-provider-typebox';
-import {
-    DB as MainDB,
-    P9gyt5ysvuuldscFBAds,
-    P9gyt5ysvuuldscFBAdsInsights,
-    P9gyt5ysvuuldscLeads
-} from '@/schemas_db/db_main';
 import { Type } from "@sinclair/typebox";
 
 export type FastifyRequestTypebox<TSchema extends FastifySchema> = FastifyRequest<
@@ -108,9 +102,10 @@ export interface TokenWithStatus extends Token {
 // Define the mapping of brands to their respective table names
 export const brandTableMap = {
     "perFIT": {
-        leads: "p9gyt5ysvuuldsc.leads",
-        FBAdsLeads: "p9gyt5ysvuuldsc.FB Ads",
-        FBAdsInsights: "p9gyt5ysvuuldsc.FB Ads Insights",
+        Leads: "p9gyt5ysvuuldsc.leads",
+        FBAds: "p9gyt5ysvuuldsc.FB Ads",
+        GoogleAds: "p9gyt5ysvuuldsc.Google Ads",
+        AdsReports: "p9gyt5ysvuuldsc.Ads Reports",
     }
 } as const;
 export const TypeboxBrands = Type.Union([Type.Literal("perFIT")]);

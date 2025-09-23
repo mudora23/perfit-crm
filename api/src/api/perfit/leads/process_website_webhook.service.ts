@@ -64,7 +64,7 @@ export async function processWebsiteWebhook(
         user_agent
      */
     const lead = await fastify.mainDB
-        .insertInto(getTable(brand, "leads"))
+        .insertInto(getTable(brand, "Leads"))
         .values({
             "姓名": data.full_name,
             "平台": "Website",

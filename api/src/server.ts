@@ -26,6 +26,8 @@ import { ErrorResponse } from "@/services/response";
 
 import { Transporter } from "nodemailer";
 
+import { fastifySchedule } from "@fastify/schedule";
+
 dotenv.config();
 
 export interface FastifyMailerNamedInstance {
@@ -202,6 +204,10 @@ export default async () => {
 
   // Add plugin - pusher
   //await fastify.register(import("@/plugins/pusher"));
+
+  // Add plugin - schedule
+  await fastify.register(fastifySchedule);
+  fastify.register(import("@/schedule"));
 
   // Add Healthcheck route
   fastify.get(
