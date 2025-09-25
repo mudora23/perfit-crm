@@ -12,8 +12,15 @@ export async function setAdInsights(
 
     for (const ad_insights of body) {
 
+        const formatter = new Intl.DateTimeFormat('en-CA', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            timeZone: 'Asia/Hong_Kong',
+        });
+
         const row_updated_at = new Date();
-        const insights_date = new Date(ad_insights.date_start);
+        const insights_date = new Date(formatter.format(new Date(ad_insights.date_start)));
 
         const adInsightsData = {
             ad_account_id: ad_insights.ad_account_id,

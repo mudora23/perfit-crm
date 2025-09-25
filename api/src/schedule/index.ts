@@ -23,7 +23,7 @@ export default async (fastify: TypedFastifyInstance) => {
             ))
 
             fastify.scheduler.addSimpleIntervalJob(new SimpleIntervalJob({ seconds: 3600, runImmediately: false },
-                (await import("@/schedule/perfit/fb_leads/process_ad_report.service")).run(fastify)
+                (await import("@/schedule/perfit/fb_leads/process_ad_insights.service")).run(fastify)
             ))
 
             fastify.scheduler.addSimpleIntervalJob(new SimpleIntervalJob({ seconds: 600, runImmediately: false },

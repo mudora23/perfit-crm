@@ -5,9 +5,9 @@ import { AsyncTask } from 'toad-scheduler';
 export function run(fastify: TypedFastifyInstance) {
 
 return new AsyncTask(
-    '@/schedule/perfit/fb_leads/process_ad_report.service', async () => {
+    '@/schedule/perfit/fb_leads/process_ad_insights.service', async () => {
 
-        fastify.log.info("Running perFIT FB Leads - Process Ad Report");
+        fastify.log.info("Running perFIT FB Leads - Process Ad Insights");
 
         const brand = "perFIT";
         const limit = 1;
@@ -87,7 +87,7 @@ return new AsyncTask(
             const conversions = full_details?.conversions && Array.isArray(full_details.conversions) ? full_details.conversions.reduce((sum: number, conv: any) => sum + (conv.value || 0), 0) : 0;
             const conversions_messaging_connection = full_details?.actions?.find((action: any) => action.action_type === 'onsite_conversion.total_messaging_connection')?.value || 0;
 
-            const reportData = {
+            const insightsData = {
                 "Display_Name": formatter.format(new Date(row.date)) + " @ FB @ " + (adRow?.campaign_name || "") + " @ " + (adRow?.adset_name || "") + " @ " + (adRow?.ad_name || ""),
                 "Platform": "FB",
                 "FB Ads_id": adCRMRowID,
@@ -109,17 +109,17 @@ return new AsyncTask(
                 "updated_at": updated_at,
             };
 
-            // Check if the report exists
-            const reportExists = await fastify.mainDB
+            // Check if the insights exists
+            const insightsExists = await fastify.mainDB
                 .selectFrom(getTable(brand, "AdsReports"))
                 .where("Date", "=", row.date)
                 .where("FB Ads_id", "=", adCRMRowID)
                 .executeTakeFirst() !== undefined;
 
-            if (reportExists) {
+            if (insightsExists) {
                 await fastify.mainDB
                     .updateTable(getTable(brand, "AdsReports"))
-                    .set(reportData)
+                    .set(insightsData)
                     .where("Date", "=", row.date)
                     .where("FB Ads_id", "=", adCRMRowID)
                     .executeTakeFirstOrThrow();
@@ -127,7 +127,7 @@ return new AsyncTask(
                 await fastify.mainDB
                     .insertInto(getTable(brand, "AdsReports"))
                     .values({
-                        ...reportData,
+                        ...insightsData,
                         "Date": row.date,
                         "FB Ads_id": adCRMRowID,
                         "created_at": updated_at,
