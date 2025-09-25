@@ -22,7 +22,7 @@ export default async (fastify: TypedFastifyInstance) => {
                 (await import("@/schedule/perfit/fb_leads/process_ad_information.service")).run(fastify)
             ))
 
-            fastify.scheduler.addSimpleIntervalJob(new SimpleIntervalJob({ seconds: 3600, runImmediately: false },
+            fastify.scheduler.addSimpleIntervalJob(new SimpleIntervalJob({ seconds: 600, runImmediately: false },
                 (await import("@/schedule/perfit/fb_leads/process_ad_insights.service")).run(fastify)
             ))
 
@@ -30,7 +30,7 @@ export default async (fastify: TypedFastifyInstance) => {
                 (await import("@/schedule/perfit/google_ads/process_ad_group_information.service")).run(fastify)
             ))
 
-            fastify.scheduler.addSimpleIntervalJob(new SimpleIntervalJob({ seconds: 3600, runImmediately: false },
+            fastify.scheduler.addSimpleIntervalJob(new SimpleIntervalJob({ seconds: 600, runImmediately: false },
                 (await import("@/schedule/perfit/google_ads/process_ad_group_report.service")).run(fastify)
             ))
 
