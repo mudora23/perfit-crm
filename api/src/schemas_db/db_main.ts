@@ -1435,7 +1435,7 @@ export interface DB {
   "p9gyt5ysvuuldsc.Ads Reports": P9gyt5ysvuuldscAdsReports;
   "p9gyt5ysvuuldsc.FB Ads": P9gyt5ysvuuldscFBAds;
   "p9gyt5ysvuuldsc.Google Ads": P9gyt5ysvuuldscGoogleAds;
-  "p9gyt5ysvuuldsc.leads": P9gyt5ysvuuldscLeads;
+  "p9gyt5ysvuuldsc.Leads": P9gyt5ysvuuldscLeads;
   "pj144lwve97fm7o.Features": Pj144lwve97fm7oFeatures;
   xc_knex_migrations: XcKnexMigrations;
   xc_knex_migrations_lock: XcKnexMigrationsLock;

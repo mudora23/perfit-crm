@@ -102,7 +102,7 @@ export interface TokenWithStatus extends Token {
 // Define the mapping of brands to their respective table names
 export const brandTableMap = {
     "perFIT": {
-        Leads: "p9gyt5ysvuuldsc.leads",
+        Leads: "p9gyt5ysvuuldsc.Leads",
         FBAds: "p9gyt5ysvuuldsc.FB Ads",
         GoogleAds: "p9gyt5ysvuuldsc.Google Ads",
         AdsReports: "p9gyt5ysvuuldsc.Ads Reports",
