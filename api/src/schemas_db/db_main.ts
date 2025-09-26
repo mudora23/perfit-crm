@@ -1298,6 +1298,7 @@ export interface P9gyt5ysvuuldscLeads {
   id: Generated<number>;
   "Keyman__人名_": string | null;
   landing_url: string | null;
+  Member_Code: string | null;
   nc_order: Numeric | null;
   Remarks: string | null;
   updated_at: Timestamp | null;
@@ -1305,7 +1306,8 @@ export interface P9gyt5ysvuuldscLeads {
   User_identifier__uid_: string | null;
   User_IP__uip_: string | null;
   "來源": string | null;
-  "入會類別": string | null;
+  "來源__其他_": string | null;
+  "入會類別": Numeric | null;
   "姓名": string | null;
   "實際到店日期": Timestamp | null;
   "平台": string | null;
@@ -1315,8 +1317,26 @@ export interface P9gyt5ysvuuldscLeads {
   "跟進後用戶情況": string | null;
   "電子郵件": string | null;
   "預約到店日期": Timestamp | null;
+  "預約到店時間": string | null;
   "願意接收最新資訊及優惠": Generated<boolean | null>;
   "首次付款金額": Numeric | null;
+}
+
+export interface P9gyt5ysvuuldscLeads2 {
+  Book: Int8 | null;
+  created_at: Timestamp | null;
+  created_by: string | null;
+  "Date__自動_": Timestamp | null;
+  id: Generated<number>;
+  "Lead__自動_": Int8 | null;
+  nc_order: Numeric | null;
+  Show: Int8 | null;
+  Sign___MK: Int8 | null;
+  Sign___ST: Int8 | null;
+  Sign___TW: Int8 | null;
+  Sign___WC: Int8 | null;
+  updated_at: Timestamp | null;
+  updated_by: string | null;
 }
 
 export interface Pj144lwve97fm7oFeatures {
@@ -1436,6 +1456,7 @@ export interface DB {
   "p9gyt5ysvuuldsc.FB Ads": P9gyt5ysvuuldscFBAds;
   "p9gyt5ysvuuldsc.Google Ads": P9gyt5ysvuuldscGoogleAds;
   "p9gyt5ysvuuldsc.Leads": P9gyt5ysvuuldscLeads;
+  "p9gyt5ysvuuldsc.Leads 報數": P9gyt5ysvuuldscLeads2;
   "pj144lwve97fm7o.Features": Pj144lwve97fm7oFeatures;
   xc_knex_migrations: XcKnexMigrations;
   xc_knex_migrations_lock: XcKnexMigrationsLock;

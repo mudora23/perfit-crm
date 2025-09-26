@@ -103,6 +103,7 @@ export interface TokenWithStatus extends Token {
 export const brandTableMap = {
     "perFIT": {
         Leads: "p9gyt5ysvuuldsc.Leads",
+        LeadCounts: "p9gyt5ysvuuldsc.Leads 報數",
         FBAds: "p9gyt5ysvuuldsc.FB Ads",
         GoogleAds: "p9gyt5ysvuuldsc.Google Ads",
         AdsReports: "p9gyt5ysvuuldsc.Ads Reports",

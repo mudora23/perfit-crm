@@ -38,6 +38,12 @@ export default async (fastify: TypedFastifyInstance) => {
                 (await import("@/schedule/perfit/website/process_lead.service")).run(fastify)
             ))
 
+            // refresh Leads 報數
+            fastify.scheduler.addSimpleIntervalJob(new SimpleIntervalJob({ seconds: 300, runImmediately: false },
+                (await import("@/schedule/perfit/refresh_lead_count.service")).run(fastify)
+            ))
+
+
         }
     )
 }
