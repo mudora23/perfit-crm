@@ -267,6 +267,7 @@ type NcButtonSize = 'xxsmall' | 'xsmall' | 'small' | 'medium' | 'xs'
 interface SidebarTableNode extends TableType {
   isMetaLoading?: boolean
   isViewsLoading?: boolean
+  views: ViewType[]
 }
 
 interface UsersSortType {
@@ -872,6 +873,11 @@ interface NcListProps {
    * ```
    */
   searchBasisOptions?: NcListSearchBasisOptionType[]
+
+  /**
+   * @default default
+   */
+  theme?: 'default' | 'ai'
 }
 
 // NcList type ends here
@@ -902,6 +908,25 @@ interface CreateViewForm {
   }>
   fk_cover_image_col_id: string | null | undefined
 }
+
+// NcClipboardDataType type starts here
+type NcClipboardDataType = Record<string, NcClipboardDataItemType>
+
+interface NcClipboardDataItemType {
+  /**
+   * Unique clipboard item id
+   */
+  id: string
+  workspaceId?: string
+  tableId?: string
+  rowIds: string[]
+  copiedPlainText: string
+  copiedHtml?: string
+  dbCellValueArr: Array<any[]>
+  columns: Partial<ColumnType>[]
+}
+
+// NcClipboardDataType type ends here
 
 export type {
   User,
@@ -968,4 +993,6 @@ export type {
   NcDropdownPlacement,
   MakeCellEditableFn,
   CreateViewForm,
+  NcClipboardDataType,
+  NcClipboardDataItemType,
 }

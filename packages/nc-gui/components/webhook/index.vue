@@ -1,6 +1,13 @@
 <script setup lang="ts">
 import { diff } from 'deep-object-diff'
-import { type HookReqType, type HookTestReqType, type HookType, PlanLimitTypes, hasInputCalls } from 'nocodb-sdk'
+import {
+  type HookReqType,
+  type HookTestReqType,
+  type HookType,
+  PlanLimitTypes,
+  hasInputCalls,
+  removeUndefinedFromObj,
+} from 'nocodb-sdk'
 import type { Ref } from 'vue'
 import { onKeyDown } from '@vueuse/core'
 import { UITypes, isLinksOrLTAR, isSystemColumn, isVirtualCol } from 'nocodb-sdk'
@@ -98,6 +105,8 @@ let hookRef = reactive<
   Omit<HookType, 'notification'> & {
     notification: Record<string, any> & {
       include_user: boolean
+      trigger_form?: boolean
+      trigger_form_id?: string
     }
     eventOperation?: string
     condition: boolean
@@ -130,6 +139,8 @@ let hookRef = reactive<
       ],
       path: '',
     },
+    trigger_form: false,
+    trigger_form_id: undefined,
   },
   condition: false,
   trigger_field: false,
@@ -139,7 +150,7 @@ let hookRef = reactive<
 })
 
 const hasUnsavedChanges = computed(() => {
-  if (!props.hook || !hookRef.id || !oldHookRef.value || !hookRef) return true
+  if (!props.hook || !hookRef.id || !oldHookRef.value || !hookRef || showUpgradeModal.value) return true
 
   return !ncIsEmptyObject(diff(removeUndefinedFromObj(oldHookRef.value), removeUndefinedFromObj(hookRef)))
 })
@@ -216,6 +227,10 @@ const toggleOperation = (operation: string) => {
     hookRef.trigger_field = false
     hookRef.trigger_fields = []
   }
+  if (!ops.includes('insert')) {
+    hookRef.notification.trigger_form = false
+    hookRef.notification.trigger_form_id = undefined
+  }
   hookRef.operation = ops // this will trigger hookRef.operation watch
   // event other than 'after' has no 'send me everything'
   sendMeEverythingChecked.value = hookRef.event === 'after' && ops?.length === operationsEnum.value?.length
@@ -227,6 +242,8 @@ const toggleSendMeEverythingChecked = (_evt: Event) => {
   if (!sendMeEverythingChecked.value) {
     hookRef.trigger_field = false
     hookRef.trigger_fields = []
+    hookRef.notification.trigger_form = false
+    hookRef.notification.trigger_form_id = undefined
   }
 }
 const handleEventChange = (e: string) => {
@@ -237,6 +254,8 @@ const handleEventChange = (e: string) => {
     hookRef.operation = ['trigger']
     hookRef.trigger_field = false
     hookRef.trigger_fields = []
+    hookRef.notification.trigger_form = false
+    hookRef.notification.trigger_form_id = undefined
   }
 
   // Automatically set active to true when event type is manual
@@ -602,6 +621,10 @@ async function saveHooks() {
     if (hookRef.operation?.length === 0 && sendMeEverythingChecked.value === false) {
       message.error('At least one operation need to be selected')
       throw new Error('At least one operation need to be selected')
+    }
+    if (hookRef.notification.trigger_form && !hookRef.notification.trigger_form_id) {
+      message.error('You must select a trigger form')
+      throw new Error('You must select a trigger form')
     }
   } catch (error: any) {
     console.error('validation error', error)
@@ -1228,6 +1251,18 @@ const webhookV2AndV3Diff = computed(() => {
                       v-model:trigger-fields="hookRef.trigger_fields"
                       v-model:trigger-field="hookRef.trigger_field"
                       :columns="triggerByFieldColumns"
+                    />
+                  </div>
+
+                  <div
+                    v-if="isEeUI && meta?.id && hookRef.event === 'after' && hookRef.operation?.includes('insert')"
+                    v-bind="validateInfos['notification.trigger_form_id']"
+                    class="w-full mb-4"
+                  >
+                    <WebhookTriggerByForm
+                      v-model:trigger-form="hookRef.notification.trigger_form"
+                      v-model:trigger-form-id="hookRef.notification.trigger_form_id"
+                      :table-id="meta.id"
                     />
                   </div>
                 </div>

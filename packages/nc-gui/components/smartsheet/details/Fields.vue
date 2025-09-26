@@ -1312,7 +1312,7 @@ const rightPanelWidth = computed(() => {
 })
 
 const confirmUnsavedChangesBeforeLeaving = (from: RouteLocationNormalizedLoadedGeneric, next: NavigationGuardNext) => {
-  if (!hasUnsavedChanges.value || !(ncIsArray(from.params?.slugs) && from.params?.slugs?.includes('field'))) {
+  if (!hasUnsavedChanges.value || !(ncIsArray(from.params?.slugs) && from.params?.slugs?.[1] === 'field')) {
     next()
     return
   }
@@ -1820,6 +1820,9 @@ onBeforeRouteUpdate((_to, from, next) => {
                 :disabled="isLocked"
                 item-key="id"
                 data-testid="nc-field-list-wrapper"
+                scroll
+                :scroll-sensitivity="120"
+                bubble-scroll
                 @change="onMove($event)"
               >
                 <template #item="{ element: field }">
